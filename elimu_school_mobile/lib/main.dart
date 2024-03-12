@@ -1,6 +1,5 @@
 import 'package:elimu_school_mobile/config/size_config.dart';
 import 'package:elimu_school_mobile/screens/child_selecte.dart';
-import 'package:elimu_school_mobile/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io' show Platform;
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       // home: const LoginScreen(),
-      home: ChildSelect(),
+      home: const ChildSelect(),
     );
   }
 }

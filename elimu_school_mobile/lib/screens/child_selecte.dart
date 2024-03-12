@@ -1,14 +1,11 @@
 import 'dart:math';
-
 import 'package:elimu_school_mobile/config/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../models/models_carousel.dart';
 
 class ChildSelect extends StatefulWidget {
-  ChildSelect({super.key});
+  const ChildSelect({super.key});
 
   @override
   State<ChildSelect> createState() => _ChildSelectState();
@@ -16,13 +13,12 @@ class ChildSelect extends StatefulWidget {
 
 class _ChildSelectState extends State<ChildSelect> {
   late PageController _pageController;
-  final int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController(
-      initialPage: _currentPage,
+      initialPage: 0,
       viewportFraction: 0.8,
     );
   }
@@ -41,9 +37,7 @@ class _ChildSelectState extends State<ChildSelect> {
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 60,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 60),
               child: Column(
                 children: <Widget>[
                   AspectRatio(
@@ -57,16 +51,34 @@ class _ChildSelectState extends State<ChildSelect> {
                       },
                     ),
                   ),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  SizedBox(
-                    height: 50,
-                    width: 170,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text("\${data.nom}"),
-                    ),
+                  const SizedBox(height: 60),
+                  ElevatedButton(
+                    onPressed: () {
+                      final selectedChild =
+                          dataList[_pageController.page!.round()];
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text("Confirmation"),
+                          content: Text(
+                              "Vous avez sélectionné ${selectedChild.nom}"),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text("Annuler"),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                // Traitez l'action de sélection de l'enfant ici
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Confirmer"),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    child: const Text("Sélectionner"),
                   ),
                 ],
               ),
@@ -103,32 +115,30 @@ class _ChildSelectState extends State<ChildSelect> {
             child: GestureDetector(
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                    image: DecorationImage(
-                        image: AssetImage(
-                          data.imageName,
-                        ),
-                        fit: BoxFit.fill),
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(0, 4),
-                        blurRadius: 4,
-                        color: Colors.black26,
-                      ),
-                    ]),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  image: DecorationImage(
+                    image: AssetImage(data.imageName),
+                    fit: BoxFit.fill,
+                  ),
+                  boxShadow: const [
+                    BoxShadow(
+                      offset: Offset(0, 4),
+                      blurRadius: 4,
+                      color: Colors.black26,
+                    ),
+                  ],
+                ),
               ),
               onTap: () {
-                debugPrint('\$${data.nom}');
+                debugPrint(data.nom);
               },
             ),
           ),
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        const SizedBox(height: 20),
         Text(
-          "\$${data.nom}",
+          data.nom,
           style: GoogleFonts.poppins(
             color: Colors.black38,
             fontSize: getProportionateScreenHeight(22),
@@ -136,7 +146,7 @@ class _ChildSelectState extends State<ChildSelect> {
           ),
         ),
         Text(
-          "\$${data.prenom}",
+          data.prenom,
           style: GoogleFonts.poppins(
             color: Colors.black38,
             fontSize: getProportionateScreenHeight(22),
