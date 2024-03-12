@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
       ),
       // home: const LoginScreen(),
-      home: const ChildSelect(),
+      home: ChildSelect(),
     );
   }
 }
