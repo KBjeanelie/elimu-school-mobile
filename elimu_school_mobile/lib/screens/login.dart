@@ -1,4 +1,4 @@
-import 'package:elimu_school_mobile/screens/dashboard_screen.dart';
+import 'package:elimu_school_mobile/screens/child_selecte.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DashBoardScreen(),
+                        builder: (context) => const ChildSelect(),
                       ),
                     );
                   },

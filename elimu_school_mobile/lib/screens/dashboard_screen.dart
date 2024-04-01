@@ -1,5 +1,4 @@
 import 'package:elimu_school_mobile/config/themes.dart';
-import 'package:elimu_school_mobile/screens/account_screen.dart';
 import 'package:elimu_school_mobile/screens/carreer_screen.dart';
 import 'package:elimu_school_mobile/screens/ebook.dart';
 import 'package:elimu_school_mobile/screens/eventand_announce.dart';
@@ -11,28 +10,32 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
+import '../widget/custom_appbar.dart';
+
 class DashBoardScreen extends StatelessWidget {
-  const DashBoardScreen({super.key});
+  final String s;
+
+  const DashBoardScreen(this.s, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: white,
-        title: customeTextStyle("Bonjour, Ruth", size: 14),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const AccountScreen())
-              );
-            },
-            icon: CircleAvatar(
-              backgroundColor: Colors.grey.shade200,
-              child: customeIcon(IconlyLight.profile),
-            ),
-          )
-        ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            IconlyLight.arrowLeft2,
+            color: Colors.black,
+          ),
+        ),
+        title: CustomAppBar2(
+          text: s,
+        ),
+        elevation: 0.5,
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 15),

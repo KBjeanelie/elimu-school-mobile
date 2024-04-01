@@ -1,8 +1,12 @@
 import 'dart:math';
 import 'package:elimu_school_mobile/config/size_config.dart';
+import 'package:elimu_school_mobile/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../config/themes.dart';
 import '../models/models_carousel.dart';
+import 'account_screen.dart';
 
 class ChildSelect extends StatefulWidget {
   const ChildSelect({super.key});
@@ -31,57 +35,75 @@ class _ChildSelectState extends State<ChildSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.grey.shade300,
-        body: SingleChildScrollView(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 60),
-              child: Column(
-                children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 0.85,
-                    child: PageView.builder(
-                      itemCount: dataList.length,
-                      physics: const ClampingScrollPhysics(),
-                      controller: _pageController,
-                      itemBuilder: (context, index) {
-                        return carouselView(index);
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 60),
-                  ElevatedButton(
-                    onPressed: () {
-                      final selectedChild =
-                          dataList[_pageController.page!.round()];
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text("Confirmation"),
-                          content: Text(
-                              "Vous avez sélectionné ${selectedChild.nom}"),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text("Annuler"),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                // Traitez l'action de sélection de l'enfant ici
-                                Navigator.pop(context);
-                              },
-                              child: const Text("Confirmer"),
-                            ),
-                          ],
-                        ),
-                      );
+    return Scaffold(
+      backgroundColor: Colors.grey.shade300,
+      appBar: AppBar(
+        backgroundColor: white,
+        title: customeTextStyle("Bonjour, Ruth", size: 14),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const AccountScreen())
+              );
+            },
+            icon: CircleAvatar(
+              backgroundColor: Colors.grey.shade200,
+              child: customeIcon(IconlyLight.profile),
+            ),
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 60),
+            child: Column(
+              children: <Widget>[
+                AspectRatio(
+                  aspectRatio: 0.85,
+                  child: PageView.builder(
+                    itemCount: dataList.length,
+                    physics: const ClampingScrollPhysics(),
+                    controller: _pageController,
+                    itemBuilder: (context, index) {
+                      return carouselView(index);
                     },
-                    child: const Text("Sélectionner"),
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 60),
+                ElevatedButton(
+                  onPressed: () {
+                    final selectedChild =
+                        dataList[_pageController.page!.round()];
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text("Confirmation"),
+                        content: Text(
+                            "Vous avez sélectionné ${selectedChild.nom}"),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text("Annuler"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              // Traitez l'action de sélection de l'enfant ici
+                              Navigator.pop(context);
+                              Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => DashBoardScreen(selectedChild.nom))
+                              );
+                            },
+                            child: const Text("Confirmer"),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  child: const Text("Sélectionner"),
+                ),
+              ],
             ),
           ),
         ),

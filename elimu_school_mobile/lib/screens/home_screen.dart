@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   
   static const List<Widget> _widgetOptions =  <Widget>[
-    DashBoardScreen(),
+    DashBoardScreen(''),
     MessagesScreen(),
     ContactScreen(),
     AccountScreen(),

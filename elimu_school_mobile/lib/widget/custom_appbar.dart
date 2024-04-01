@@ -56,3 +56,58 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
+
+
+class CustomAppBar2 extends StatelessWidget {
+  final String text;
+  const CustomAppBar2({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      height: getProportionateScreenHeight(53),
+      width: getProportionateScreenWidth(250),
+      child: Stack(
+        children: [
+          Center(
+            child: Text(
+              text,
+              style: GoogleFonts.poppins(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: getProportionateScreenHeight(17)),
+            ),
+          ),
+          Positioned(
+            right: getProportionateScreenWidth(30),
+            bottom: getProportionateScreenWidth(15),
+            child: Container(
+              height: 30,
+              width: 30,
+              decoration: BoxDecoration(
+                color: cBlue,
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+          Positioned(
+            left: getProportionateScreenWidth(0),
+            bottom: getProportionateScreenWidth(0),
+            child: Container(
+              height: 30,
+              width: 30,
+              decoration: BoxDecoration(
+                color: cJaune,
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

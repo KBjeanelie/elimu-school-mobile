@@ -18,17 +18,17 @@ List<DataModel> dataList = [
   ),
   DataModel(
     "assets/user_profile.jpeg",
-    "Kouakou",
+    "Elijah",
     "Cristal",
   ),
   DataModel(
     "assets/user_profile.jpeg",
-    "Kouakou",
+    "Walter",
     "Cristal",
   ),
   DataModel(
     "assets/user_profile.jpeg",
-    "Kouakou",
+    "YOKA",
     "Cristal",
   ),
 ];
