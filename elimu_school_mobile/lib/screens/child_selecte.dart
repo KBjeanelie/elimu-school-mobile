@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:elimu_school_mobile/config/size_config.dart';
 import 'package:elimu_school_mobile/screens/dashboard_screen.dart';
+import 'package:elimu_school_mobile/screens/eventand_announce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,6 +45,17 @@ class _ChildSelectState extends State<ChildSelect> {
           IconButton(
             onPressed: () {
               Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const EventAnnouce())
+              );
+            },
+            icon: CircleAvatar(
+              backgroundColor: Colors.grey.shade200,
+              child: customeIcon(IconlyLight.calendar),
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const AccountScreen())
               );
             },
@@ -51,7 +63,7 @@ class _ChildSelectState extends State<ChildSelect> {
               backgroundColor: Colors.grey.shade200,
               child: customeIcon(IconlyLight.profile),
             ),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(

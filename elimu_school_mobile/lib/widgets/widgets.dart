@@ -1,8 +1,12 @@
 // C'est dans ce fichier que sera créer tous les widgets nécéssaire à notre application
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../config/color_border_container.dart';
+import '../config/size_config.dart';
 import '../config/themes.dart';
+import '../screens/devoir.dart';
 
 
 Container messageGroupModel(BuildContext context){
@@ -366,3 +370,168 @@ class _EleveCard3State extends State<EleveCard3> {
   }
 }
 
+Column cardEvent(BuildContext context){
+  return Column(
+    children: [
+      Container(
+        height: 45,
+        width: double.infinity,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: bRouge,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Text(
+          'Sortie Sportif',
+          style: GoogleFonts.poppins(
+            color: Colors.white,
+            fontSize: getProportionateScreenHeight(16),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+      const Padding(
+        padding: EdgeInsets.all(14),
+        child: SizedBox(
+          width: 300,
+          child: Text(
+            'description',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+      const Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 60,
+          vertical: 10,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            DelaiLimite(
+                date: '20 August, 2024',
+                icon: IconlyLight.timeCircle,
+                couleur: Colors.green),
+            DelaiLimite(
+                date: '28 August, 2024',
+                icon: IconlyLight.timeCircle,
+                couleur: Colors.red)
+          ],
+        ),
+      ),
+      const Divider(
+        color: Colors.grey,
+        indent: 50,
+        endIndent: 50,
+        height: 1,
+        thickness: 1,
+      ),
+      TextButton(
+        onPressed: () {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: SizedBox(
+                height: 100,
+                width: 100,
+                child: Column(children: [
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: Icon(
+                          IconlyLight.volumeDown,
+                          size: getProportionateScreenHeight(55),
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        bottom: 2,
+                        child: Container(
+                          height: 23,
+                          width: 23,
+                          decoration: BoxDecoration(
+                            color: bViolet,
+                            borderRadius:
+                                BorderRadius.circular(20),
+                          ),
+                        ),
+                      ),
+                      // TITRE de l'evenement ou de l'annonce
+                    ],
+                  ),
+                  Text(
+                    'Sortie Sportif',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Divider(
+                    color: Colors.grey,
+                    indent: 30,
+                    endIndent: 30,
+                    height: 1,
+                    thickness: 1,
+                  ),
+                ]),
+              ),
+              content: SizedBox(
+                width: double.infinity,
+                child: Text(
+                  'Ici se trouvera la description de l\'evenement',
+                  style: GoogleFonts.poppins(),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Retour',
+                    style: GoogleFonts.poppins(),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, 'Inscrit');
+                  },
+                  child: Text(
+                    'S\'inscrire',
+                    style: GoogleFonts.poppins(),
+                  ),
+                ),
+              ],
+            ),
+          ).then(
+            (value) {
+              if (value != null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text(
+                      'Inscription reussi',
+                    ),
+                    action: SnackBarAction(
+                      label: 'Ok',
+                      onPressed: () {},
+                    ),
+                  ),
+                );
+              }
+            },
+          );
+        },
+        child: Text(
+          'read more',
+          style: GoogleFonts.poppins(
+              fontSize: getProportionateScreenHeight(13),
+              fontWeight: FontWeight.w500),
+        ),
+      ),
+    ],
+  );
+}

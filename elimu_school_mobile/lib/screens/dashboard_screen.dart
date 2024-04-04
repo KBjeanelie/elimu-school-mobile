@@ -1,7 +1,7 @@
 import 'package:elimu_school_mobile/config/themes.dart';
 import 'package:elimu_school_mobile/screens/carreer_screen.dart';
-import 'package:elimu_school_mobile/screens/ebook.dart';
-import 'package:elimu_school_mobile/screens/eventand_announce.dart';
+// import 'package:elimu_school_mobile/screens/ebook.dart';
+// import 'package:elimu_school_mobile/screens/eventand_announce.dart';
 import 'package:elimu_school_mobile/screens/finance_screen.dart';
 import 'package:elimu_school_mobile/screens/note_et_moyenne.dart';
 import 'package:elimu_school_mobile/screens/planning.dart';
@@ -71,28 +71,28 @@ class DashBoardScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(left: 25, right: 25, top: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const EbookScreen())
-                        );
-                      },
-                      child: cardMenue(context, IconlyLight.bookmark, "e-book", color: Colors.red)),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const EventAnnouce())
-                        );
-                      },
-                      child: cardMenue(context, IconlyLight.volumeUp, "Information", color: Colors.green))
-                  ],
-                ),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.only(left: 25, right: 25, top: 30),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       GestureDetector(
+              //         onTap: (){
+              //           Navigator.push(context,
+              //             MaterialPageRoute(builder: (context) => const EbookScreen())
+              //           );
+              //         },
+              //         child: cardMenue(context, IconlyLight.bookmark, "e-book", color: Colors.red)),
+              //       GestureDetector(
+              //         onTap: (){
+              //           Navigator.push(context,
+              //             MaterialPageRoute(builder: (context) => const EventAnnouce())
+              //           );
+              //         },
+              //         child: cardMenue(context, IconlyLight.volumeUp, "Information", color: Colors.green))
+              //     ],
+              //   ),
+              // ),
               Container(
                 margin: const EdgeInsets.only(left: 25, right: 25, top: 30),
                 child: Row(
